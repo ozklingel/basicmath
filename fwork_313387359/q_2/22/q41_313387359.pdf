@@ -1,0 +1,21 @@
+Information for ddd
+type:dir 
+File inode: 		786434
+---------------------------
+Information for ddd/ccsd
+type:dir 
+File inode: 		786438
+---------------------------
+Information for ddd/ccsd/q1.c
+type:file 
+File inode: 		786441
+---------------------------
+Information for ddd/file.c
+type:file 
+File inode: 		786437
+---------------------------
+Information for ddd/proc.c
+type:file 
+File inode: 		786439
+---------------------------
+
