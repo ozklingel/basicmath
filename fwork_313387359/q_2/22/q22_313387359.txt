@@ -1,0 +1,3 @@
+Sigaction and sigqueue:
+Compared to the kill function, int kill (pid_t pid, int siq) and simple to use ,sigqueue has  .more arguments.
+additionly,Sigqueue () passes more additional information than kill (), but Sigqueue () sends a signal to only one process and cannot send a signal to a process group

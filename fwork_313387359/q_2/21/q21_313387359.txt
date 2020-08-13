@@ -1,0 +1,14 @@
+1)Klii:
+Very simple.but:
+If you don't give the process a chance to finish what it's doing and clean up, it may leave corrupted files (or other state) around that it won't be able to understand once restarted
+
+.2) sudo ps -a on commend line:
+it show all prosseces running on pc but user have to look for the pid number in ths long and big table shown to him  
+
+3)/proce/pid on commend line:
+/proc/<PID> should exists if the process PID is still running
+Simple commnd.
+it's either a file or a directory. However remember that the
+process may be dying and may not exist by the time you get the
+response
+
