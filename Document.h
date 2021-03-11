@@ -26,6 +26,7 @@ public:
     void changeLine(int line);
     void forward2(int line);
     void back1(int line);
+    void concat();
 // a appends new text after the current line
     void a();
 // i inserts new text before the current line

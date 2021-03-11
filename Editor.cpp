@@ -14,6 +14,7 @@ void Editor::loop(){
     regex forward2("+2");
     // +2 makes line #+2 the current line
     regex back("-1");
+    regex j("j");
 // a appends new text after the current line
     regex a("a");
 // i inserts new text before the current line
@@ -71,6 +72,11 @@ void Editor::loop(){
           Doc->changeLine(stoi(work));//stoi string to int
         }
    /////////////////////
+     else if(regex_match(work, j)){
+           // cout<<"n"<<endl;
+          //  Doc->Q();
+          Doc->n();
+        }
         else if(regex_match(work, forward2)){
            // cout<<"changeLine"<<endl;
           //  Doc->Q();
@@ -82,10 +88,10 @@ void Editor::loop(){
           Doc->back1(stoi(work.at(1));//stoi string to int
         }
   /////////////////////////////////
-         else if(regex_match(work, a)){
+         else if(regex_match(work, j)){
           //  cout<<"a"<<endl;
          //   Doc->Q();
-         Doc->a();
+         Doc->j();
         }
          else if(regex_match(work, i)){
            // cout<<"i"<<endl;

@@ -3,7 +3,16 @@
 
 // p prints the current line (ed maintains a current line)
     void Documents::w(){
-        cout<<full.at(currentLine)<<endl;
+  	string temp;
+           //need lines and with empty lines;
+           getline(cin,temp);     
+    std::ofstream out(temp);
+    
+    for(string st: full){
+            out<<st<<endl;
+        }
+
+    out.close();
     }
 // n prints line number of current line followed by TAB followed by current line
     void Documents::n(){
@@ -28,6 +37,22 @@
 
     }
   ///////////////////////////////////////////
+  
+ void Documents::concat(){
+        string work1=full.at(currentLine);
+        d();
+        string work2=full.at(currentLine+1)
+        currentLine++;
+        d();
+        currentLine--;
+        currentLine--;
+        string temp=work1+work2;
+        it=full.begin()+(currentLine+1);
+        full.insert(it,temp);
+        currentLine++;
+    }
+  
+  
     // +2 makes line #2 the current line
     void Documents::forward2(int line){
         if(line+currentLine>full.size()){
