@@ -1,18 +1,51 @@
-/* Arbel Nathan 308366749 */
 #include "Document.h"
 
-// p prints the current line (ed maintains a current line)
-    void Documents::w(){
-  	string temp;
+#include <fstream>
+  void Documents::w(string src){
+  	
            //need lines and with empty lines;
-           getline(cin,temp);     
-    std::ofstream out(temp);
+               
+    std::ofstream out(src);
     
     for(string st: full){
             out<<st<<endl;
         }
 
     out.close();
+    }
+ void Documents::j(){
+        string work1=full.at(currentLine);
+        string work2=full.at(currentLine+1);
+        currentLine++;
+        d();
+        d();
+
+        string temp=work1+work2;
+        std::vector<string>::iterator it;
+        it=full.begin()+(currentLine+1);
+        full.insert(it,temp);
+        currentLine++;
+    }
+
+   void Documents::forward2(){
+        if(2+currentLine>full.size()){
+            cout<<"?"<<endl;
+            Q();
+        }
+       currentLine=(2+currentLine);
+
+    }
+    // -1 makes line #1 the current line
+    void Documents::back1(){
+        if(currentLine-1<0){
+            cout<<"?"<<endl;
+            Q();
+        }
+        currentLine=(currentLine-1);
+   }
+// p prints the current line (ed maintains a current line)
+    void Documents::p(){
+        cout<<full.at(currentLine)<<endl;
     }
 // n prints line number of current line followed by TAB followed by current line
     void Documents::n(){
@@ -27,50 +60,15 @@
 
     }
 
-// 3 makes line #3 the current line
+// 7 makes line #7 the current line
     void Documents::changeLine(int line){
         if(line>full.size()||line<=0){
             cout<<"?"<<endl;
             Q();
-        }
+        } 
         currentLine=(line-1);
-
+        cout<<full.at(currentLine)<<endl;
     }
-  ///////////////////////////////////////////
-  
- void Documents::concat(){
-        string work1=full.at(currentLine);
-        d();
-        string work2=full.at(currentLine+1)
-        currentLine++;
-        d();
-        currentLine--;
-        currentLine--;
-        string temp=work1+work2;
-        it=full.begin()+(currentLine+1);
-        full.insert(it,temp);
-        currentLine++;
-    }
-  
-  
-    // +2 makes line #2 the current line
-    void Documents::forward2(int line){
-        if(line+currentLine>full.size()){
-            cout<<"?"<<endl;
-            Q();
-        }
-        currentLine=(line+currentLine);
-
-    }
-    // -1 makes line #1 the current line
-    void Documents::back1(int line){
-        if(currentLine-line<0){
-            cout<<"?"<<endl;
-            Q();
-        }
-        currentLine=(currentLine-line);
-    }
- ///////////////////////////////////////////////
 // a appends new text after the current line
     void Documents::a(){
        if(currentLine==-1){
@@ -170,4 +168,3 @@
         exit(0);
     }
 
-    

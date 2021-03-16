@@ -1,20 +1,18 @@
-/* Arbel Nathan 308366749 */
 #include "Editor.h"
 
 void Editor::loop(){
 // p prints the current line (ed maintains a current line)
-    regex w("w");
+    regex p("p");
 // n prints line number of current line followed by TAB followed by current line
     regex n("n");
 // %p prints all lines
     regex prAll("%p");
-// 3 makes line #3 the current line
+// 7 makes line #7 the current line
     regex changeLine(R"(\d)");
-// +2 makes line #+2 the current line
-    regex forward2("+2");
-    // +2 makes line #+2 the current line
-    regex back("-1");
-    regex j("j");
+     regex forward2(R"(\+\d)");
+     regex back1("-1");
+         regex j("j");
+          regex w(R"(w\s.*)");
 // a appends new text after the current line
     regex a("a");
 // i inserts new text before the current line
@@ -51,10 +49,10 @@ void Editor::loop(){
             Doc->s(one,two);
           //  Doc->Q();
         }
-        else if(regex_match(work, w)){
+        else if(regex_match(work, p)){
            // cout<<"p"<<endl;
           //  Doc->Q();
-          Doc->w();
+          Doc->p();
         }
          else if(regex_match(work, n)){
            // cout<<"n"<<endl;
@@ -71,27 +69,10 @@ void Editor::loop(){
           //  Doc->Q();
           Doc->changeLine(stoi(work));//stoi string to int
         }
-   /////////////////////
-     else if(regex_match(work, j)){
-           // cout<<"n"<<endl;
-          //  Doc->Q();
-          Doc->n();
-        }
-        else if(regex_match(work, forward2)){
-           // cout<<"changeLine"<<endl;
-          //  Doc->Q();
-          Doc->forward2(stoi(work.at(1));//stoi string to int
-        }
-           else if(regex_match(work, back1)){
-           // cout<<"changeLine"<<endl;
-          //  Doc->Q();
-          Doc->back1(stoi(work.at(1));//stoi string to int
-        }
-  /////////////////////////////////
-         else if(regex_match(work, j)){
+         else if(regex_match(work, a)){
           //  cout<<"a"<<endl;
          //   Doc->Q();
-         Doc->j();
+         Doc->a();
         }
          else if(regex_match(work, i)){
            // cout<<"i"<<endl;
@@ -117,6 +98,31 @@ void Editor::loop(){
          else if(regex_match(work,Q)){
          //   cout<<"Q"<<endl;
             Doc->Q();
+        }
+         else if(regex_match(work, forward2)){
+            //cout<<"changeLine"<<endl;
+            //Doc->Q();
+         
+          Doc->forward2();//stoi string to int
+        }
+             else if(regex_match(work, back1)){
+           // cout<<"changeLine"<<endl;
+          //  Doc->Q();
+          //char c=work[1];
+          //char* ch2=&c;
+          Doc->back1();//stoi string to int
+        }
+           else if(regex_match(work, j)){
+          //  cout<<"a"<<endl;
+         //   Doc->Q();
+         Doc->j();
+        }
+         else if(regex_match(work, w)){
+           // cout<<"p"<<endl;
+          //  Doc->Q();
+          string src=work.substr(1);
+           // cout<<src<<endl;
+          Doc->w(src);
         }
     }
 }

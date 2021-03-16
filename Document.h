@@ -1,4 +1,3 @@
-/* Arbel Nathan 308366749 */
 #include <iostream>
 #include <string>
 #include <vector>
@@ -17,16 +16,17 @@ public:
 
     Documents(): currentLine{-1}{};
 // p prints the current line (ed maintains a current line)
-    void w();
+    void p();
 // n prints line number of current line followed by TAB followed by current line
     void n();
 // %p prints all lines
     void pAll();
-// 7 makes line #3 the current line
+// 7 makes line #7 the current line
     void changeLine(int line);
-    void forward2(int line);
-    void back1(int line);
-    void concat();
+     void forward2();
+    void back1();
+    void j();
+     void w(string src);
 // a appends new text after the current line
     void a();
 // i inserts new text before the current line
