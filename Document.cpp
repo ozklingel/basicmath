@@ -3,7 +3,7 @@
 #include <fstream>
  void Documents::end(){
        
-        currentLine=(full.size()-1);
+        currentLine=(full.size());
        // cout<<full.at(currentLine<<endl;
     }
   void Documents::w(string src){
@@ -32,13 +32,20 @@
         currentLine++;
     }
 
-   void Documents::forward2(){
-        if(2+currentLine>full.size()){
-            cout<<"?"<<endl;
-            Q();
-        }
-       currentLine=(2+currentLine);
-
+   void Documents::forwardn(int line){
+       //  cout<<line<<endl;
+        // cout<<currentLine<<endl;
+                std::vector<string>::iterator it;
+  for(int i=0;i<(-line);i++){
+  it=full.begin()+(currentLine+i);
+            string temp="";
+             full.insert(it,temp);
+            currentLine++;
+  }
+  currentLine--;
+       
+currentLine=(currentLine-line);
+        cout<<currentLine<<endl;
     }
     // -1 makes line #1 the current line
     void Documents::back1(int line){
@@ -46,8 +53,12 @@
             cout<<"?"<<endl;
             Q();
         }
+        if (line<0){
+        	forwardn(line);
+        	return;}
+        else{
         currentLine=(currentLine-line);
-        cout<<currentLine<<endl;
+       }
    }
 // p prints the current line (ed maintains a current line)
     void Documents::p(){
@@ -80,18 +91,21 @@
     }
 // a appends new text after the current line
     void Documents::a(){
-       if(currentLine==0){
-           string temp;
+   // cout<<currentLine<<endl;
+       //if(currentLine==0){
+           //string temp;
            //need lines and with empty lines;
-           getline(cin,temp);
-           if(temp.compare(".")){
-               full.push_back(temp);
-               currentLine=1;
-           }
-       }
+           //getline(cin,temp);
+           //if(temp.compare(".")){
+             //  full.push_back(temp);
+           //    currentLine=1;
+         //  }
+           
+       //}
         std::vector<string>::iterator it;
         
         while(true){
+        cout<<currentLine<<endl;
             it=full.begin()+(currentLine);
             string temp;
            //need lines and with empty lines;
@@ -99,6 +113,7 @@
             if(!temp.compare(".")) break;
             full.insert(it,temp);
             currentLine++;
+                       
           //  pAll();
         }
         
@@ -109,10 +124,10 @@
            string temp;
            //need lines and with empty lines;
            getline(cin,temp);
-           if(temp.compare(".")){
-               full.push_back(temp);
+           //if(temp.compare(".")){
+              full.push_back(temp);
                currentLine++;
-           }
+         //  }
        }
         std::vector<string>::iterator it;
         

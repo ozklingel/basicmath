@@ -24,7 +24,8 @@ public:
 // Read the next line from File untill it reaches the end.
 while (std::getline(in, str))
 {
-    // Line contains string of length > 0 then save it in vector
+   
+        full.push_back(str);
     
 }
     
@@ -37,7 +38,7 @@ while (std::getline(in, str))
     void pAll();
 // 7 makes line #7 the current line
     void changeLine(int line);
-     void forward2();
+void forwardn(int line);
     void back1(int line);
     void j();
      void w(string src);
