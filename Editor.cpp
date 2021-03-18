@@ -10,7 +10,7 @@ void Editor::loop(){
 // 7 makes line #7 the current line
     regex changeLine(R"(\d)");
      regex forward2(R"(\+\d)");
-     regex back1("-1");
+     regex back1(R"(-\d)");
          regex j("j");
           regex w(R"(w\s.*)");
 // a appends new text after the current line
@@ -27,8 +27,8 @@ void Editor::loop(){
 // s/old/new/ replaces old string with new in current line (google: C++ split or token)
     regex swc(R"(s/\w+/\w+/?)");
 // Q Quits the editor without saving
-    regex Q("Q");
-
+    regex Q("q");
+ regex lest(R"(\$)");
     while(true){
         string work;
         getline(cin,work);
@@ -102,15 +102,16 @@ void Editor::loop(){
          else if(regex_match(work, forward2)){
             //cout<<"changeLine"<<endl;
             //Doc->Q();
-         
-          Doc->forward2();//stoi string to int
+         Doc->back1(-(stoi(work.substr(1))))
+          ;//stoi string to int
         }
              else if(regex_match(work, back1)){
            // cout<<"changeLine"<<endl;
           //  Doc->Q();
           //char c=work[1];
           //char* ch2=&c;
-          Doc->back1();//stoi string to int
+         //  cout<<work[1]<<endl;
+          Doc->back1(stoi(work.substr(1)));//stoi string to int
         }
            else if(regex_match(work, j)){
           //  cout<<"a"<<endl;
@@ -123,6 +124,13 @@ void Editor::loop(){
           string src=work.substr(1);
            // cout<<src<<endl;
           Doc->w(src);
+        }
+        else if(regex_match(work, lest)){
+           // cout<<"p"<<endl;
+          //  Doc->Q();
+
+           // cout<<src<<endl;
+          Doc->end();
         }
     }
 }

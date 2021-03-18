@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include <fstream>
+
 using namespace std;
 
 class Documents {
@@ -14,7 +17,18 @@ private:
 
 public:
 
-    Documents(): currentLine{-1}{};
+    Documents(): currentLine{0}{};
+    Documents(char* a): currentLine{0}{
+    std::ifstream in(a);
+    std::string str;
+// Read the next line from File untill it reaches the end.
+while (std::getline(in, str))
+{
+    // Line contains string of length > 0 then save it in vector
+    
+}
+    
+    };
 // p prints the current line (ed maintains a current line)
     void p();
 // n prints line number of current line followed by TAB followed by current line
@@ -24,9 +38,10 @@ public:
 // 7 makes line #7 the current line
     void changeLine(int line);
      void forward2();
-    void back1();
+    void back1(int line);
     void j();
      void w(string src);
+     void end();
 // a appends new text after the current line
     void a();
 // i inserts new text before the current line
