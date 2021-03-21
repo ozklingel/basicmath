@@ -17,8 +17,12 @@ private:
 
 public:
 
-    Documents(): currentLine{0}{};
-    Documents(char* a): currentLine{0}{
+    Documents(): currentLine{0}{
+    full.clear();
+    };
+    Documents(char* a):
+     currentLine{0}{
+     full.clear();
     std::ifstream in(a);
     std::string str;
 // Read the next line from File untill it reaches the end.
@@ -30,13 +34,8 @@ while (std::getline(in, str))
 }
     
     };
-// p prints the current line (ed maintains a current line)
-    void p();
-// n prints line number of current line followed by TAB followed by current line
-    void n();
-// %p prints all lines
-    void pAll();
-// 7 makes line #7 the current line
+
+ 
     void changeLine(int line);
 void forwardn(int line);
     void back1(int line);
@@ -59,5 +58,10 @@ void forwardn(int line);
 // Q
 // Quits the editor without saving
     void Q();
+   void p();
+
+    void n();
+
+    void pAll();
 
 };

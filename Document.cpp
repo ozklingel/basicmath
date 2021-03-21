@@ -3,20 +3,20 @@
 #include <fstream>
  void Documents::end(){
        
-        currentLine=(full.size());
+        currentLine=(full.size()-1);
        // cout<<full.at(currentLine<<endl;
     }
   void Documents::w(string src){
   	
            //need lines and with empty lines;
                
-    std::ofstream out(src);
-    
+    ofstream file;
+    file.open(src);
     for(string st: full){
-            out<<st<<endl;
+            file<<st<<endl;
         }
 
-    out.close();
+    file.close();
     }
  void Documents::j(){
         string work1=full.at(currentLine-1);
@@ -36,17 +36,21 @@
        //  cout<<line<<endl;
         // cout<<currentLine<<endl;
                 std::vector<string>::iterator it;
+                if(currentLine>=full.size()){
   for(int i=0;i<(-line);i++){
   it=full.begin()+(currentLine+i);
             string temp="";
              full.insert(it,temp);
             currentLine++;
   }
-  currentLine--;
-       
+  
+    }   
 currentLine=(currentLine-line);
-        cout<<currentLine<<endl;
+if(currentLine>full.size()){
+  currentLine--;}
+ cout<<currentLine<<endl;
     }
+   
     // -1 makes line #1 the current line
     void Documents::back1(int line){
         if(currentLine-line<1){
@@ -136,7 +140,10 @@ currentLine=(currentLine-line);
             string temp;
            //need lines and with empty lines;
             getline(cin,temp);
-            if(!temp.compare(".")) break;
+            if(!temp.compare("."))
+            {currentLine--;;
+             break;
+            }
             full.insert(it++,temp);
             currentLine++;
         }

@@ -6,7 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm> // for std::copy
-int main(int argc,char** ardv) 
+int main(int argc,char* ardv[]) 
 {
     switch(argc){
     case 1:

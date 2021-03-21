@@ -1,33 +1,34 @@
 #include "Editor.h"
-
+Editor::~Editor(){
+delete Doc;
+}
 void Editor::loop(){
-// p prints the current line (ed maintains a current line)
+
+    regex a("a");
+
+    regex i("i");
+
+    regex c("c");
+
+    regex d("d");
+
+    regex src(R"(/\w+/)");
+
+    regex swc(R"(s/\w+/\w+/?)");
+
+    regex Q("q");
     regex p("p");
-// n prints line number of current line followed by TAB followed by current line
+
     regex n("n");
-// %p prints all lines
+
     regex prAll("%p");
-// 7 makes line #7 the current line
+
     regex changeLine(R"(\d)");
      regex forward2(R"(\+\d)");
      regex back1(R"(-\d)");
          regex j("j");
           regex w(R"(w\s.*)");
-// a appends new text after the current line
-    regex a("a");
-// i inserts new text before the current line
-    regex i("i");
-// c changes the current line for text that follows
-    regex c("c");
-// d deletes the current line
-    regex d("d");
-// /text searches forward after current line for the specified text. The search wraps to the
-// beginning of the buffer and continues down to the current line, if necessary
-    regex src(R"(/\w+)");
-// s/old/new/ replaces old string with new in current line (google: C++ split or token)
-    regex swc(R"(s/\w+/\w+/?)");
-// Q Quits the editor without saving
-    regex Q("q");
+
  regex lest(R"(\$)");
     while(true){
         string work;
@@ -90,9 +91,12 @@ void Editor::loop(){
          Doc->d();
         }
          else if(regex_match(work, src)){
-          //  cout<<"src"<<endl;
+
+          
          //   Doc->Q();
          string src=work.substr(1);
+         src=src.substr(0,src.size()-1);
+        // cout<<src<<endl;
          Doc->search(src);
         }
          else if(regex_match(work,Q)){
