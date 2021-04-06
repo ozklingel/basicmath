@@ -13,20 +13,25 @@
     [(list h t y i...)   0]
     ))
 
-(define x 0)
 
-(: count-3lists : (Listof Any) -> Natural)
-(define (count-3lists L)
-  (match L 
-    ['()   0]
-    [(cons h t)
-     (if(list? h)
-        (+ (length3? h) (count-3lists t))
-        (count-3lists t))]
-    [e 0]
-    ))
   
- 
+ (: count-3lists : (Listof Any) -> Natural)
+(define (count-3lists  L)
+  
+ (: helper : Natural (Listof Any) -> Natural)
+(define (helper acc L)
+  (match L 
+ ['()   acc]
+ [(cons h t)
+       (if  (list? h)
+          (helper (+ (length3? h) acc) (rest L))
+          (helper acc (rest L)))]
+ [e 0]
+  
+  ))
+  (helper 0 L)
+  )  
+  
 
 (test(count-3lists '((7 6 5) (6 5) ("as" 2 1) () (3 2 1) )) => 3)
 (test(count-3lists '((7 6 5) ( ()6 5) () )) => 2)
